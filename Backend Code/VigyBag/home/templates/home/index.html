@@ -1,0 +1,225 @@
+{% extends 'home/base.html' %}
+{%  load static %}
+{% block title %}
+    VigyBag | Home
+{% endblock %}
+{% block content %}
+     <div class="container">
+        <div class="content">
+            <h1>Don't leave home <br>without
+                <span>VigyBag</span>
+            </h1>
+            <h4>Say goodbye to the stress and hassle of shopping, and hello to the convenience and excitement of
+                VigyBag.
+                Get ready to shop smarter, not harder - <span id="down"><a href="#">Download VigyBag today!</a></span>
+            </h4>
+        </div>
+
+        <img src="{% static 'img/landing_svg_image.svg' %}" alt="">
+    </div>
+
+    <div class="local">
+        <input type="search" name="search" id="search" placeholder="Search your location">
+        <img src="{% static 'img/search_icon.png' %}" alt="search_icon">
+    </div>
+
+
+    <!-- product container -->
+    <div class="product-container">
+        <!-- product-1 -->
+        <div class="Accessories-box">
+            <div>
+                <div class="rectangle-42">
+                    <img src="{% static 'img/Suit.png' %}" alt="">
+                </div>
+            </div>
+            <div class="product-name">
+                <a href="#">Fashion & Accessories</a>
+            </div>
+        </div>
+        <div>
+            <!-- product-2 -->
+            <div class="Accessories-box">
+                <div>
+                    <div class="rectangle-42">
+                        <img src="{% static 'img/Stationery.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="product-name">
+                    <a href=""> Printing &
+                        Stationaries</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <!-- product-3 -->
+            <div class="Accessories-box">
+                <div>
+                    <div class="rectangle-42">
+                        <img src="{% static 'img/Food Bar.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="product-name">
+                    <a href=""> Food & <br>
+                        Beverages</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <!-- product-4 -->
+            <div class="Accessories-box">
+                <div>
+                    <div class="rectangle-42">
+                        <img src="{% static 'img/Aroma.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="product-name">
+                    <a href=""> Beauty & <br>
+                        Wellness</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- items section -->
+    <div class="items-container">
+        <!-- first row -->
+            <div class="item-row">
+            <div class="item-title">
+                Headphones for you!
+            </div>
+
+            <div class="item-cards-div">
+                {% for item in headphones %}
+                <div class="item-card">
+                    <div class="item-image">
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                        <!-- Add other image-related elements or buttons here -->
+                        <!-- <img class="wishlist-icon" src="img/Love-Circled.png" alt=""> -->
+                                <button class="Lbtn" id="btn1" onclick="Toggle1()"> <i class="fa-solid fa-heart"></i>
+                                </button>
+                         <!--                         <button class="wishlist-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                              </svg>
+                              </button> -->
+                    </div>
+                    <div class="item-description">
+                        <div>
+                            <div class="item-heading"><a href="">{{ item.title }}</a></div>
+                            <p>{{ item.description }}</p>
+                            <div class="items-star">
+                                {% for _ in myrange %}
+                                    <i class="fa-solid fa-star"></i>
+                                {% endfor %}
+                                <div>(121)</div>  {# {{ item.rating.count }}  #}
+                            </div>
+                            <div class="item-paise">
+                                <h3>&#8377; {{ item.price }}</h3>
+                            </div>
+                        </div>
+                        <button class="addbtn" id="addBtn{{ item.id }}" onclick="tog{{ item.id }}()"><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="see-more-text">
+            <a href="">
+                <div>
+                    <h2>See more...</h2>
+                </div>
+            </a>
+        </div>
+        <!-- second row -->
+        <div class="'item-row">
+            <div class="item-title">
+              Clothes for you!
+           </div>
+            <div class="item-cards-div">
+                {% for item in clothes %}
+                  <div class="item-card">
+                     <div class="item-image">
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                        <button class="wishlist-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                 d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                           </svg>
+                        </button>
+                     </div>
+                     <div class="item-description-2">
+                        <div>
+                           <div class="item-heading"><a href="">{{ item.title }}</a></div>
+                           <p>{{ item.description }}</p>
+                           <div class="items-star">
+                              <img src="{% static 'img/Star_white.png' %}" alt="">
+                              <img src="{% static 'img/Star_white.png' %}" alt="">
+                              <img src="{% static 'img/Star_white.png' %}" alt="">
+                              <img src="{% static 'img/Star_green.png' %}" alt="">
+                              <img src="{% static 'img/star_green.png' %}" alt="">
+                              <div>(36)</div>
+                           </div>
+                           {#<div class="items-star">#}
+                              {#                            {% for _ in myrange %}#}
+                              {#                                <i class="fa-solid fa-star"></i>#}
+                              {#                            {% endfor %}#}
+                              {#<div>(36)</div> #}
+                              {# {{ item.rating.count }}  #}
+                              {#</div>#}
+                           <button class="add-to-card-button">
+                           Add to card
+                           </button>
+                        </div>
+                        <div class="item-heading">
+                           <h3>&#8377; {{ item.price }}</h3>
+                        </div>
+                     </div>
+                  </div>
+                {% endfor %}
+            </div>
+            <div class="see-more-text">
+          <a href="">
+             <div>
+                <h2>See more...</h2>
+             </div>
+          </a>
+       </div>
+
+        </div>
+
+    </div>
+
+    <br><br>
+ <!-- app section -->
+    <div class="app-container">
+        <div class="device-box">
+            <img class="device-frame" src="{% static 'img/combined-frames.png' %}" alt="">
+        </div>
+        <div class="app-info">
+            <div class="vigybag-text">
+                <img src="{% static 'img/VigyBag.png' %}" class="vigybag-image" alt="" />
+            </div>
+            <div class="google-play-button">
+                <button class="google-button">
+                    <div class="play-button">
+                        <div class="play-img-div">
+                            <img src="{% static 'img/google-play.png' %}" alt="">
+                        </div>
+                        <div class="play-text">
+                            <p>
+                            <h4>GET IT ON</h4>
+                            </p>
+                            <p>
+                            <h1>Google Play</h1>
+                            </p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
